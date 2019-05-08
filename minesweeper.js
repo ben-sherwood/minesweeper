@@ -31,8 +31,7 @@ var board = {
     { row: 4, col: 3, isMine: false, hidden: true, },
     { row: 4, col: 4, isMine: false, hidden: true, },],
 };
-var mines = 5;
-var mineCount = 0;
+
 
 function startGame() {
   // Don't remove this function call: it makes the game work!
@@ -44,9 +43,15 @@ function startGame() {
 }
 
 function setBoard() {
+  var mines = 5;
+  var mineCount = 0;
+  var randIndex = getRandomInt(0, board.cells.length);
   while (mineCount < mines) {
-    board.cells[getRandomInt(0,board.cells.length)].isMine = true;
-    mineCount++;
+    if (board.cells[randIndex].isMine != true) {
+      board.cells[randIndex].isMine = true;
+      mineCount++;
+    }
+    randIndex = getRandomInt(0, board.cells.length);
   }
 }
 function getRandomInt(min, max) {
